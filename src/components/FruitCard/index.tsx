@@ -3,6 +3,7 @@ import styles from './index.module.sass'
 
 import { FruitInformation } from 'types/FruitInformation'
 import { ShoppingCartContext } from 'components/ShoppingCart'
+import { fruitPriceCalculator } from 'util/fruitPriceCalculator'
 
 const FruitCard = (props: { fruitInfo: FruitInformation }) => {
   const { fruitInfo } = props
@@ -16,7 +17,7 @@ const FruitCard = (props: { fruitInfo: FruitInformation }) => {
       </figure>
       <article>
         <p>
-          Preço: R$100,00
+          Preço: R${fruitPriceCalculator(fruitInfo)}
         </p>
       </article>
       <article className={styles.details}>

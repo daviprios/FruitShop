@@ -4,7 +4,8 @@ interface FruitInformation{
   id: number,
   family: string,
   order: string,
-  nutritions: FruitNutritions
+  nutritions: FruitNutritions,
+  price?: number
 }
 
 interface FruitNutritions {
