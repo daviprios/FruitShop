@@ -5,6 +5,7 @@ import { paths } from 'config/routePaths'
 
 import Layout from 'components/Layout'
 import Products from 'views/Products'
+import Cart from 'views/Cart'
 
 const Routes = () => {
   return (
@@ -12,7 +13,7 @@ const Routes = () => {
       <Switch>
         <Route path='/' element={<Layout/>}>
           <Route index element={<Products/>}/>
-          <Route path={paths.cart} element={<span>CARRINHO</span>}/>
+          <Route path={paths.cart} element={<Cart/>}/>
           <Route path={paths.details} element={<span>DETALHES</span>}/>
         </Route>
       </Switch>

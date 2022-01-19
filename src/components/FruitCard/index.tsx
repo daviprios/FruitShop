@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './index.module.sass'
 
-import { FruitInformation } from 'api/api'
+import { FruitInformation } from 'types/FruitInformation'
 
 const FruitCard = (props: { fruitInfo: FruitInformation }) => {
   const { fruitInfo } = props
@@ -58,7 +58,7 @@ const FruitCard = (props: { fruitInfo: FruitInformation }) => {
           </section>
         </div>
       </article>
-      <button className={styles.button}>
+      <button className={styles.button} onClick={() => {}}>
         Adicionar ao Carrinho
       </button>
     </section>

@@ -1,21 +1,5 @@
 import axios, { AxiosInstance } from 'axios'
-
-interface FruitInformation{
-  genus: string,
-  name: string,
-  id: number,
-  family: string,
-  order: string,
-  nutritions: FruitNutritions
-}
-
-interface FruitNutritions {
-  carbohydrates: number,
-  protein: number,
-  fat: number,
-  calories: number,
-  sugar: number
-}
+import { FruitInformation } from 'types/FruitInformation'
 
 interface ErrorResponse{
   error: string
@@ -42,5 +26,5 @@ class Api{
   }
 }
 
-export type { FruitInformation, FruitNutritions, ErrorResponse }
+export type { ErrorResponse }
 export default Api
