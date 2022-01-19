@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styles from './index.module.sass'
 
 import { FruitInformation } from 'types/FruitInformation'
+import { ShoppingCartContext } from 'components/ShoppingCart'
 
 const FruitCard = (props: { fruitInfo: FruitInformation }) => {
   const { fruitInfo } = props
+  const cartItensContext = useContext(ShoppingCartContext)
 
   return (
     <section className={styles.card}>
@@ -58,7 +60,7 @@ const FruitCard = (props: { fruitInfo: FruitInformation }) => {
           </section>
         </div>
       </article>
-      <button className={styles.button} onClick={() => {}}>
+      <button className={styles.button} onClick={() => cartItensContext.dispatch({type: 'add', item: fruitInfo, amount: 1})}>
         Adicionar ao Carrinho
       </button>
     </section>
