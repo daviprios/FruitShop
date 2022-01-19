@@ -15,11 +15,9 @@ const FruitCard = (props: { fruitInfo: FruitInformation }) => {
       <figure className={styles.figure}>
         <img src='' alt={`imagem de um(a) ${fruitInfo.name}`}/>
       </figure>
-      <article>
-        <p>
-          Preço: R${fruitPriceCalculator(fruitInfo)}
-        </p>
-      </article>
+      <p className={styles.price}>
+        R${fruitPriceCalculator(fruitInfo)}
+      </p>
       <article className={styles.details}>
         <h3 className={styles.title}>Detalhes</h3>
         <div className={styles.detailsContainer}>
