@@ -32,9 +32,7 @@ const Layout = () => {
           </ul>
         </nav>
       </div>
-      <main>
-        <Outlet/>
-      </main>
+      <Outlet/>
       <footer>
 
       </footer>

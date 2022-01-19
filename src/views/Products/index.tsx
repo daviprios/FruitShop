@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import styles from './index.module.sass'
 
 import Api, { FruitInformation } from 'api/api'
+import FruitCard from 'components/FruitCard'
 
 const api = new Api()
 
@@ -12,22 +14,13 @@ const Products = () => {
   }, [])
 
   return (
-    <>
-      Products:
-      {fruits.map((fruit) => {
-        return <div>
-          <h1>{fruit.name}</h1>
-          <p>{fruit.genus}</p>
-          <p>{fruit.family}</p>
-          <p>{fruit.order}</p>
-          <div>
-            <p>
-              {JSON.stringify(fruit.nutritions)}
-            </p>
-          </div>
-        </div>
-      })}
-    </>
+    <main className={styles.page}>
+      <section className={styles.fruitSection}>
+        {fruits.map((fruit) => {
+          return <FruitCard key={fruit.id} fruitInfo={fruit}/>
+        })}
+      </section>
+    </main>
   )
 }
 

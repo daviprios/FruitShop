@@ -35,8 +35,8 @@ class Api{
       const response = await this.connection.get<Array<FruitInformation>>('all')
       return response.data
     }
-    catch(err){
-      console.log(err)
+    catch(error){
+      console.log(error)
       return []
     }
   }

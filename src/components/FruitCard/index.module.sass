@@ -1,0 +1,72 @@
+@import '../../styles/_util';
+  
+.detailsInfo
+  width: 100%
+
+  margin: 1rem 0
+
+  p
+    display: flex
+    justify-content: space-between
+
+    width: 100%
+////////////////////////////////////////////
+.card
+  width: 300px
+  max-width: 95%
+
+  margin: 2rem 0.25rem
+  padding: 1.5rem
+
+  border: solid 1px black
+
+  border-radius: 1rem
+
+  .title
+    margin-bottom: 0.5rem
+
+.figure
+  width: 100%
+  aspect-ratio: 1
+
+  max-height: 70vw
+  max-width: 70vw
+
+  background-color: orange
+
+  img
+    height: 100%
+    width: 100%
+
+.details
+  .title
+    margin: 1rem 0
+
+.detailsContainer
+  display: flex
+  justify-content: space-between
+  flex-wrap: wrap
+
+.nutrition
+  @extend .detailsInfo
+
+.classification
+  @extend .detailsInfo
+
+.button
+  width: 100%
+
+  padding: 0.75rem 1rem
+
+  color: white
+  background-color: $primary
+
+  border: solid 1px orange
+  border-radius: 1rem
+
+  &:hover
+    cursor: pointer
+    background-color: orange
+
+  &:active
+    background-color: $primary
