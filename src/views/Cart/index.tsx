@@ -1,16 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useMemo, useState } from 'react'
 
 import { ShoppingCartContext, ShoppingCartItem } from 'components/ShoppingCart'
-import { fruitPriceCalculator } from 'util/fruitPriceCalculator'
 
 const Cart = () => {
   const {state: cartItens, dispatch: cartItensDispatch} = useContext(ShoppingCartContext)
   
-  const getCartItens = () => {
+  const getCartItens = useMemo(() => {
     let itens: Array<ShoppingCartItem> = []
     if(typeof(cartItens) !== 'undefined') for(const [, value] of Object.entries<ShoppingCartItem>(cartItens)) itens.push(value)
     return itens
-  }
+  }, [cartItens])
 
   const [totalPrice, setTotalPrice] = useState(0)
 
@@ -25,24 +24,25 @@ const Cart = () => {
       <article>
         <section>
           <ul>
-            {getCartItens().map((item) => {
-              cartItensDispatch({ type: 'price', item: item.item, amount: 0 })
-              const fruitPrice = fruitPriceCalculator(item.item)
-              const total = (Number(fruitPrice) * item.amount).toFixed(2)
-
-              return (
-                <li key={item.item.id}>
+            {getCartItens.map((item) => {
+            return (
+              <li key={item.item.id}>
+                <p>
                   {item.item.name} - {item.amount}
-                  <p>
-                    Preço por unidade: {fruitPrice}
-                  </p>
-                  <p>
-                    Preço total: {total}
-                  </p>
-                  <br />
-                </li>
-              )
-            })}
+                  <button onClick={() => cartItensDispatch({ type: 'add', amount: 1, item: item.item })}>+</button>
+                  <button onClick={() => cartItensDispatch({ type: 'subtract', amount: 1, item: item.item })}>-</button>
+                  <button onClick={() => cartItensDispatch({ type: 'remove', amount: 0, item: item.item })}>Remover</button>
+                </p>
+                <p>
+                  Preço por unidade: {(item.item.price)?.toFixed(2)}
+                </p>
+                <p>
+                  Preço total: {(Number(item.item.price) * item.amount).toFixed(2)}
+                </p>
+                <br />
+              </li>
+            )
+          })}
           </ul>
         </section>
         <section>
