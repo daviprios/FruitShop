@@ -1,19 +1,30 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styles from './index.module.sass'
 
 import { FruitInformation } from 'types/FruitInformation'
 import { ShoppingCartContext } from 'components/ShoppingCart'
 import { fruitPriceCalculator } from 'util/fruitPriceCalculator'
+import ImageRequester from 'api/imageRequester'
+
+const imageRequester = new ImageRequester()
 
 const FruitCard = (props: { fruitInfo: FruitInformation }) => {
   const { fruitInfo } = props
   const cartItensContext = useContext(ShoppingCartContext)
 
+  const [url, setUrl] = useState('')
+
+  useEffect(() => {
+  imageRequester.getImage(fruitInfo.name + ' fruit').then(res => {
+      setUrl(res)
+    })
+  }, [])
+
   return (
     <section className={styles.card}>
       <h2 className={styles.title}>{fruitInfo.name}</h2>
       <figure className={styles.figure}>
-        <img src='' alt={`imagem de um(a) ${fruitInfo.name}`}/>
+        <img src={url} alt={`imagem de um(a) ${fruitInfo.name}`}/>
       </figure>
       <p className={styles.price}>
         R${fruitPriceCalculator(fruitInfo)}
