@@ -1,0 +1,92 @@
+@import '../../styles/_util'
+  
+.shoppingCartMenu
+  width: 1000px
+  max-width: 90%
+
+  margin: 3rem auto
+
+  background-color: orange
+
+  border-collapse: collapse
+
+.tableContainer
+
+.itemContainer
+  width: 100%
+
+  border-collapse: collapse
+  border: solid 1px black
+
+  colgroup
+    col
+      width: fit-content
+
+      &:first-child
+        width: auto
+
+  thead
+    th
+      text-align: start
+
+  tbody
+    tr
+      &:nth-of-type(2n)
+        background-color: $secondary
+    
+      &:nth-of-type(2n + 1)
+        background-color: $alt
+
+      td
+        width: fit-content
+
+        &:last-of-type
+          text-align: end
+
+  td, th
+    padding: 0.5rem 1rem
+
+    border: solid 1px black
+
+.finish
+  display: flex
+  justify-content: space-between
+
+  padding: 1rem 0
+
+.finishText
+  display: flex
+  align-items: center
+
+  padding-left: 1rem
+
+  font-weight: bold
+  font-size: large
+
+  .finishTextInside
+    margin-left: 1rem
+
+    color: darkgreen
+  
+.finishButtonContainer
+
+.finishButton
+  margin: 0.5rem
+  padding: 0.75rem 1.5rem
+
+  background-color: white
+  color: orange
+  font-weight: bold
+  font-size: medium
+
+  border: solid 1px $primary
+  border-radius: 1rem
+
+  &:hover
+    cursor: pointer
+
+    color: white
+    background-color: $primary
+
+  &:active
+    background-color: orange

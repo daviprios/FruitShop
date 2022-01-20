@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react'
+import styles from './index.module.sass'
 
 import { ShoppingCartContext, ShoppingCartItem } from 'components/ShoppingCart'
+import ShoppingCartListItem from 'components/ShoppingCartListItem'
 
 const Cart = () => {
   const {state: cartItens, dispatch: cartItensDispatch} = useContext(ShoppingCartContext)
@@ -21,38 +23,44 @@ const Cart = () => {
 
   return (
     <main>
-      <article>
-        <section>
-          <ul>
-            {getCartItens.map((item) => {
-            return (
-              <li key={item.item.id}>
-                <p>
-                  {item.item.name} - {item.amount}
-                  <button onClick={() => cartItensDispatch({ type: 'add', amount: 1, item: item.item })}>+</button>
-                  <button onClick={() => cartItensDispatch({ type: 'subtract', amount: 1, item: item.item })}>-</button>
-                  <button onClick={() => cartItensDispatch({ type: 'remove', amount: 0, item: item.item })}>Remover</button>
-                </p>
-                <p>
-                  Preço por unidade: {(item.item.price)?.toFixed(2)}
-                </p>
-                <p>
-                  Preço total: {(Number(item.item.price) * item.amount).toFixed(2)}
-                </p>
-                <br />
-              </li>
-            )
-          })}
-          </ul>
+      <article className={styles.shoppingCartMenu}>
+        <section className={styles.tableContainer}>
+          <table className={styles.itemContainer}>
+            <colgroup>
+              <col />
+              <col />
+              <col />
+              <col />
+              <col />
+            </colgroup>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Preço (u)</th>
+                <th>Qnt.</th>
+                <th>Preço (t)</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {getCartItens.map((item) => {
+              return (
+                  <ShoppingCartListItem key={item.item.id} item={item.item} amount={item.amount} cartItemDispatch={cartItensDispatch}/>
+                )
+              })}
+            </tbody>
+          </table>
         </section>
-        <section>
-          Total: {totalPrice.toFixed(2)}
-          <button>
-            Comprar
-          </button>
-          <button onClick={() => cartItensDispatch({ type: 'clear' })}>
-            Limpar Carrinho
-          </button>
+        <section className={styles.finish}>
+          <p className={styles.finishText}>Total:<span className={styles.finishTextInside}>R${totalPrice.toFixed(2)}</span></p>
+          <div className={styles.finishButtonContainer}>
+            <button className={styles.finishButton}>
+              Comprar
+            </button>
+            <button className={styles.finishButton} onClick={() => cartItensDispatch({ type: 'clear' })}>
+              Limpar Carrinho
+            </button>
+          </div>
         </section>
       </article>
     </main>
