@@ -1,6 +1,6 @@
 import React, { createContext, Reducer, useReducer } from 'react'
 
-import LocalStorage, { ShoppingCartStorage } from 'config/localStorage'
+import LocalStorage, { ShoppingCartStorage } from 'services/localStorage'
 
 import { FruitInformation } from 'types/FruitInformation'
 import { ShoppingCartList, ShoppingCartItem } from 'types/ShoppingCart'
@@ -49,7 +49,7 @@ const ShoppingCartProvider = (props: {children?: JSX.Element | Array<JSX.Element
   const {children} = props
 
   const [itemListState, itemListDispatch] =
-    useReducer<Reducer<ShoppingCartList, ShoppingCartReducerAction>>(shoppingCartReducer, LocalStorage.load('shoppingCartStorage') || {})
+    useReducer<Reducer<ShoppingCartList, ShoppingCartReducerAction>>(shoppingCartReducer, LocalStorage.load<ShoppingCartList>('shoppingCartStorage') || {})
 
   return (
     <ShoppingCartContext.Provider value={{state: itemListState, dispatch: itemListDispatch}}>

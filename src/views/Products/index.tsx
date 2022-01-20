@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styles from './index.module.sass'
 
-import Api from 'api/api'
+import Api from 'services/api/api'
 import FruitCard from 'components/FruitCard'
 import { FruitInformation } from 'types/FruitInformation'
 

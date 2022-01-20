@@ -7,11 +7,16 @@ interface StorageItem{
 
 interface ShoppingCartStorage extends StorageItem{
   name: 'shoppingCartStorage',
-  data: ShoppingCartList
+  data: ShoppingCartList,
 }
 
-type storagableName = 'shoppingCartStorage'
-type storagableData = ShoppingCartList
+interface ImageStorage extends StorageItem{
+  name: string,
+  data: string
+}
+
+type storagableName = 'shoppingCartStorage' | string
+type storagableData = ShoppingCartList | string
 
 class LocalStorage{
   private static folder = '@fruitshop/'
@@ -20,7 +25,7 @@ class LocalStorage{
     localStorage.setItem(`${this.folder}${storagable.name}`, JSON.stringify(storagable.data))
   }
   
-  static load(storagableName: storagableName): storagableData | null{
+  static load<StoragableType extends storagableData>(storagableName: storagableName): StoragableType | null{
     const stored = localStorage.getItem(`${this.folder}${storagableName}`)
     if(stored === null) return stored
     return JSON.parse(stored)
@@ -29,7 +34,12 @@ class LocalStorage{
   static remove(storagableName: storagableName){
     localStorage.removeItem(`${this.folder}${storagableName}`)
   }
+
+  static clearAll(){
+    localStorage.clear()
+    console.log('Cache cleared')
+  }
 }
 
-export type { ShoppingCartStorage }
+export type { ShoppingCartStorage, ImageStorage }
 export default LocalStorage

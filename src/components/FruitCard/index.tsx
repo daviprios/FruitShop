@@ -4,7 +4,7 @@ import styles from './index.module.sass'
 import { FruitInformation } from 'types/FruitInformation'
 import { ShoppingCartContext } from 'components/ShoppingCart'
 import { fruitPriceCalculator } from 'util/fruitPriceCalculator'
-import ImageRequester from 'api/imageRequester'
+import ImageRequester from 'services/api/imageRequester'
 
 const imageRequester = new ImageRequester()
 
