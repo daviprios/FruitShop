@@ -6,7 +6,7 @@ class ImageRequester {
     try {
       const cachedImage = CacheImage.load(name)
       if(cachedImage){
-        console.log('image loaded from cache')
+        //console.log('image loaded from cache')
         return cachedImage
       }
 
@@ -21,7 +21,7 @@ class ImageRequester {
 
       const imageUrl = `https://farm${farmId}.staticflickr.com/${serverId}/${id}_${secret}.jpg`
       CacheImage.store(name, imageUrl)
-      console.log('image loaded from api')
+      //console.log('image loaded from api')
       return imageUrl
     } catch (err) { throw new Error('Image requester error') }
   }

@@ -9,15 +9,26 @@ const api = new Api()
 
 const Products = () => {
   const [fruits, setfruits] = useState<Array<FruitInformation>>([])
+  const [showRefreshButton, setShowRefreshButton] = useState(false)
 
-  const refreshFruits = () => { api.getAllFruits().then(res => setfruits(res)) }
+  const refreshFruits = () => {
+    api.getAllFruits()
+      .then((res) => {
+        setShowRefreshButton(res.length <= 0 ? true : false)
+        setfruits(res)
+      })
+      .catch((err) => {
+        setfruits([])
+        setShowRefreshButton(true)
+      })
+  }
 
   useEffect(() => { refreshFruits() }, [])
 
   return (
     <main className={styles.page}>
       <section className={styles.fruitSection}>
-        {fruits.length <= 0 ? <button className={styles.refreshButton} onClick={refreshFruits}>Refresh</button> : <></>}
+        {showRefreshButton ? <button className={styles.refreshButton} onClick={refreshFruits}>Refresh</button> : <></>}
         {fruits.map((fruit) => {
           return <FruitCard key={fruit.id} fruitInfo={fruit}/>
         })}
