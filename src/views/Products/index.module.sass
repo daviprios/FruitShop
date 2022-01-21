@@ -1,5 +1,21 @@
+@keyframes loading
+  100%
+    transform: rotate(360deg)
+
 .page
   padding: 1rem 3rem
+
+  & > div
+    display: flex
+    justify-content: center
+    align-items: center
+
+    margin-top: 1rem
+
+    & > svg
+      height: 2rem
+
+      animation: loading 1s linear 0s infinite normal none
 
 .fruitSection
   display: flex
