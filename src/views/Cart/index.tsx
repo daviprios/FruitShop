@@ -54,7 +54,7 @@ const Cart = () => {
         <section className={styles.finish}>
           <p className={styles.finishText}>Total:<span className={styles.finishTextInside}>R${totalPrice.toFixed(2)}</span></p>
           <div className={styles.finishButtonContainer}>
-            <button className={styles.finishButton}>
+            <button className={styles.finishButton} onClick={() => cartItensDispatch({ type: 'clear' })}>
               Comprar
             </button>
             <button className={styles.finishButton} onClick={() => cartItensDispatch({ type: 'clear' })}>
