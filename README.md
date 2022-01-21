@@ -1,46 +1,42 @@
-# Getting Started with Create React App
+# Descrição
+Fruit Shop é um site de *ecommerce* de frutas e afins. Escrito em ReactJS.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Nele é possível escolher entre as frutas disponíveis na página principal e adiciona-las ao carrinho, daí então "comprá-las" ou retira-las do carrinho.
 
-## Available Scripts
+O projeto é apenas um teste de habilidade e não possui todas as funcionalidades e segurança de um aplicativo de *ecommerce* real.
 
-In the project directory, you can run:
+# Scripts
 
-### `npm start`
+**Inicializar o projeto**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+`npm run start`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+**Construir a aplicação**
 
-### `npm test`
+`npm run build`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Postar site através do *GitHub Pages***
 
-### `npm run build`
+`npm run deploy`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Variáveis de ambiente
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**REACT_APP_API_BASE_URL**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+*Link* do *host* da *api* mais o caminho `/api/fruit/`
 
-### `npm run eject`
+exemplo: `http://localhost:3333/api/fruit/`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**REACT_APP_FLICKR_API_KEY**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Chave da *api* do *Flickr*
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Necessária para o carregamento das imagens das frutas.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# *Misc*
 
-## Learn More
+## *Api* original
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- `https://www.fruityvice.com/api/fruit/`
+- O servidor não possui CORS, sendo impossível realizar requisições diretamente do navegador (aplicação React)
+- Um servidor alternativo, em `NodeJS` e com CORS, está disponível em [FruitShopServer](https://github.com/daviprios/FruitShopServer)
