@@ -21,6 +21,8 @@ const Cart = () => {
     setTotalPrice(total)
   }, [cartItens])
 
+  const [showBuyMenu, setShowBuyMenu] = useState(false)
+
   return (
     <main>
       <article className={styles.shoppingCartMenu}>
@@ -54,7 +56,7 @@ const Cart = () => {
         <section className={styles.finish}>
           <p className={styles.finishText}>Total:<span className={styles.finishTextInside}>R${totalPrice.toFixed(2)}</span></p>
           <div className={styles.finishButtonContainer}>
-            <button className={styles.finishButton} onClick={() => cartItensDispatch({ type: 'clear' })}>
+            <button className={styles.finishButton} onClick={() => setShowBuyMenu(!showBuyMenu)}>
               Comprar
             </button>
             <button className={styles.finishButton} onClick={() => cartItensDispatch({ type: 'clear' })}>
@@ -63,6 +65,51 @@ const Cart = () => {
           </div>
         </section>
       </article>
+      <section style={{ display: showBuyMenu ? 'flex' : 'none' }} className={styles.buyMenuContainer}>
+        <div onClick={() => setShowBuyMenu(false)}></div>
+        <article className={styles.buyMenu}>
+          <section>
+            <ul className={styles.receipt}>
+              {getCartItens.map((item) => {
+                return (
+                  <li className={styles.receiptItem}>
+                    <p>
+                      {item.item.name}
+                    </p>
+                    <div>
+                      <p>
+                        x{item.amount}
+                      </p>
+                      <p className={styles.money}>
+                        R${Number(item.item.price || 0) * item.amount}
+                      </p>
+                    </div>
+                  </li>
+                )
+              })}
+              <li className={styles.receiptItem}>
+                <h4>
+                  Total:
+                </h4>
+                <h4 className={styles.money}>
+                  R${totalPrice}
+                </h4>
+              </li>
+            </ul>
+          </section>
+          <section className={styles.confirmation}>
+            <button onClick={() => {
+              cartItensDispatch({ type: 'clear' })
+              setShowBuyMenu(false)
+            }}>
+              Confirmar Compra
+            </button>
+            <button onClick={() => setShowBuyMenu(false)}>
+              Cancelar
+            </button>
+          </section>
+        </article>
+      </section>
     </main>
   )
 }
