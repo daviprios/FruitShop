@@ -5,6 +5,7 @@ import { FruitInformation } from 'types/FruitInformation'
 import { ShoppingCartContext } from 'components/ShoppingCart'
 import { fruitPriceCalculator } from 'util/fruitPriceCalculator'
 import ImageRequester from 'services/api/imageRequester'
+import FruitCardAddToCart from './FruitCardAddToCart'
 
 const imageRequester = new ImageRequester()
 
@@ -18,7 +19,9 @@ const FruitCard = (props: { fruitInfo: FruitInformation }) => {
   imageRequester.getImage(fruitInfo.name + ' fruit').then(res => {
       setUrl(res)
     })
-  }, [])
+  }, [fruitInfo.name])
+
+  const [showFruitCardPopup, setShowFruitCardPopup] = useState(false)
 
   return (
     <section className={styles.card}>
@@ -70,9 +73,14 @@ const FruitCard = (props: { fruitInfo: FruitInformation }) => {
           </section>
         </div>
       </article>
-      <button className={styles.button} onClick={() => cartItensContext.dispatch({type: 'add', item: fruitInfo, amount: 1})}>
+      <button className={styles.button} onClick={() => setShowFruitCardPopup(!showFruitCardPopup)}>
         Adicionar ao Carrinho
       </button>
+      <FruitCardAddToCart
+        show={showFruitCardPopup}
+        setShow={setShowFruitCardPopup}
+        addToCart={(amount: number) => cartItensContext.dispatch({type: 'add', item: fruitInfo, amount })}
+      />
     </section>
   )
 }

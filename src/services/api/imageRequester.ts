@@ -16,7 +16,7 @@ class ImageRequester {
 
       const obj = res.data
       const photoInfo = obj?.photos?.photo[0]
-      if(photoInfo === undefined || photoInfo === null) console.error(`Couldn\'t load image for ${search}`)
+      if(photoInfo === undefined || photoInfo === null) console.error(`Couldn't load image for ${search}`)
       const { farm: farmId, server: serverId, id, secret } = photoInfo
 
       const imageUrl = `https://farm${farmId}.staticflickr.com/${serverId}/${id}_${secret}.jpg`
